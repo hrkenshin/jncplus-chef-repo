@@ -1,0 +1,18 @@
+{
+  "name": "cc_webserver",
+  "description": "COC_CC WebServer(Nginx + Tomcat)",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+    "tomcat": {
+      "base_version": 7
+    }
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[tomcat],recipe[nginx]"
+  ],
+  "env_run_lists": {
+  }
+}
