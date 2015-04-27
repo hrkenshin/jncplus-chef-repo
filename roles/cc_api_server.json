@@ -1,0 +1,36 @@
+{
+  "name": "cc_api_server",
+  "description": "COC_CC API Server(Tomcat)",
+  "json_class": "Chef::Role",
+  "default_attributes": {
+  },
+  "override_attributes": {
+    "system": {
+      "timezone": "Asia/Seoul"
+    },
+    "ulimit": {
+      "users": {
+        "irteam": {
+          "filehandle_limit": 8193,
+          "process_limit": 61504
+        }
+      }
+    },
+    "tomcat": {
+      "base_version": "8",
+      "port": 80,
+      "java_options": "-Xmx128M",
+      "user": "irteam",
+      "group": "irteam"
+    }
+  },
+  "chef_type": "role",
+  "run_list": [
+    "recipe[system::timezone]",
+    "recipe[system::upgrade_packages]",
+    "recipe[ulimit]",
+    "recipe[tomcat]"
+  ],
+  "env_run_lists": {
+  }
+}
