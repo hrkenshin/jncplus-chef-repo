@@ -1,0 +1,20 @@
+sudo: false
+
+language: ruby
+
+rvm:
+  - 2.2.0
+  - 2.1.5
+  - 2.0.0-p598
+
+bundler_args: --without development integration
+
+before_install:
+  - "echo 'gem: --no-document' > ~/.gemrc"
+
+before_script:
+  - bundle exec berks install
+
+script:
+  - bundle exec foodcritic -f any .
+  - bundle exec rubocop

@@ -1,0 +1,25 @@
+---
+driver:
+  name: vagrant
+
+driver_config:
+  require_chef_omnibus: latest
+
+provisioner:
+  name: chef_zero
+
+platforms:
+  - name: debian-7.8
+  - name: debian-6.0.10
+  - name: ubuntu-14.04
+  - name: ubuntu-12.04
+  - name: centos-7.1
+  - name: centos-6.5
+  - name: centos-5.10
+
+suites:
+  - name: default
+    run_list:
+     - recipe[system::default]
+     - recipe[system::timezone]
+    attributes: { 'system': { 'short_hostname': 'test', 'domain_name': 'kitchen', 'timezone':'Australia/Sydney' } }
